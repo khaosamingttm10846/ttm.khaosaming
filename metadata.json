@@ -1,0 +1,7 @@
+{
+  "name": "ระบบสารสนเทศการแพทย์แผนไทย รพ.เขาสมิง",
+  "description": "ระบบสารสนเทศและแดชบอร์ดวิเคราะห์ข้อมูลบริการแพทย์แผนไทย รายรับรายจ่าย และรายงานสถิติ โรงพยาบาลเขาสมิง",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

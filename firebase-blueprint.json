@@ -1,0 +1,335 @@
+{
+  "entities": {
+    "ServiceRecord": {
+      "title": "ServiceRecord",
+      "description": "Thai Traditional Medicine clinical service record for patients at Khao Saming Hospital",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique record identifier"
+        },
+        "hn": {
+          "type": "string",
+          "description": "Hospital Number of the patient",
+          "maxLength": 50
+        },
+        "patientName": {
+          "type": "string",
+          "description": "Patient full name",
+          "maxLength": 150
+        },
+        "gender": {
+          "type": "string",
+          "description": "Patient biological gender",
+          "enum": ["ชาย", "หญิง", "อื่นๆ"]
+        },
+        "age": {
+          "type": "number",
+          "description": "Patient age in years"
+        },
+        "ageGroup": {
+          "type": "string",
+          "description": "Age group category",
+          "enum": ["0-14 ปี", "15-24 ปี", "25-44 ปี", "45-59 ปี", "60 ปีขึ้นไป"]
+        },
+        "serviceDate": {
+          "type": "string",
+          "description": "Date of service in YYYY-MM-DD format",
+          "maxLength": 10
+        },
+        "year": {
+          "type": "number",
+          "description": "Calendar year (AD)"
+        },
+        "month": {
+          "type": "number",
+          "description": "Month number 1-12"
+        },
+        "fiscalYear": {
+          "type": "number",
+          "description": "Thai Fiscal Year (BE)"
+        },
+        "coverageType": {
+          "type": "string",
+          "description": "Healthcare coverage scheme",
+          "enum": [
+            "บัตรทอง (UC)",
+            "ข้าราชการ/เบิกตรง",
+            "ประกันสังคม",
+            "ชำระเงินเอง",
+            "แรงงานต่างด้าว",
+            "อื่นๆ"
+          ]
+        },
+        "procedureType": {
+          "type": "string",
+          "description": "Type of Thai traditional medicine procedure or service",
+          "enum": [
+            "นวดไทยเพื่อการบำบัดรักษา",
+            "นวดไทยเพื่อส่งเสริมสุขภาพ/ผ่อนคลาย",
+            "ประคบสมุนไพร",
+            "อบไอน้ำสมุนไพร",
+            "การดูแลฟื้นฟูมารดาหลังคลอด/ทับหม้อเกลือ",
+            "การพอกยา/เผายาสมุนไพร",
+            "การตรวจวินิจฉัยและจ่ายยาสมุนไพร",
+            "บริการคลินิกเฉพาะโรค (อัมพฤกษ์/ไมเกรน/ข้อเข่าเสื่อม)"
+          ]
+        },
+        "diagnosis": {
+          "type": "string",
+          "description": "Traditional or modern clinical diagnosis",
+          "maxLength": 200
+        },
+        "practitionerName": {
+          "type": "string",
+          "description": "Name of attending Thai traditional medical practitioner",
+          "maxLength": 150
+        },
+        "fee": {
+          "type": "number",
+          "description": "Service fee or procedure charge in THB"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional clinical remarks or symptoms",
+          "maxLength": 500
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "Email or UID of operator who logged this record",
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp ISO string",
+          "maxLength": 60
+        }
+      },
+      "required": [
+        "id",
+        "hn",
+        "patientName",
+        "gender",
+        "age",
+        "serviceDate",
+        "year",
+        "month",
+        "coverageType",
+        "procedureType"
+      ]
+    },
+    "FinancialRecord": {
+      "title": "FinancialRecord",
+      "description": "Monthly Income and Expense entry for Khao Saming TTM Department",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique transaction ID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Transaction date YYYY-MM-DD",
+          "maxLength": 10
+        },
+        "year": {
+          "type": "number",
+          "description": "Year of transaction"
+        },
+        "month": {
+          "type": "number",
+          "description": "Month number 1-12"
+        },
+        "type": {
+          "type": "string",
+          "description": "Transaction nature: income or expense",
+          "enum": ["income", "expense"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of income or expenditure",
+          "maxLength": 100
+        },
+        "title": {
+          "type": "string",
+          "description": "Description / Title of the transaction",
+          "maxLength": 200
+        },
+        "amount": {
+          "type": "number",
+          "description": "Monetary value in Thai Baht (THB)"
+        },
+        "referenceNo": {
+          "type": "string",
+          "description": "Receipt or voucher reference number",
+          "maxLength": 50
+        },
+        "payerPayee": {
+          "type": "string",
+          "description": "Name of payer or payee entity/individual",
+          "maxLength": 150
+        },
+        "notes": {
+          "type": "string",
+          "description": "Notes on the financial record",
+          "maxLength": 500
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "Operator user ID or email",
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp ISO string",
+          "maxLength": 60
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "year",
+        "month",
+        "type",
+        "category",
+        "title",
+        "amount"
+      ]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for hospital staff",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase user authentication UID",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "User Google email address",
+          "maxLength": 150
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full staff name",
+          "maxLength": 150
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar photo URL",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "description": "Access role in the system",
+          "enum": ["admin", "staff"]
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "Last sign-in timestamp",
+          "maxLength": 60
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "ClinicEvent": {
+      "title": "ClinicEvent",
+      "description": "Special clinic day, mobile medical outreach, or departmental event for Thai Traditional Medicine at Khao Saming Hospital",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique event ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name or title of special clinic or event",
+          "maxLength": 200
+        },
+        "date": {
+          "type": "string",
+          "description": "Event date in YYYY-MM-DD format",
+          "maxLength": 10
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of special clinic or activity",
+          "enum": [
+            "คลินิกเฉพาะโรค",
+            "คลินิกมารดาหลังคลอด",
+            "หน่วยแพทย์เคลื่อนที่/ชุมชน",
+            "อบรม/ประชุมเชิงปฏิบัติการ",
+            "วันสมุนไพร/กิจกรรมพิเศษ",
+            "อื่นๆ"
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "description": "Event start time HH:mm",
+          "maxLength": 10
+        },
+        "endTime": {
+          "type": "string",
+          "description": "Event end time HH:mm",
+          "maxLength": 10
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the clinic or activity",
+          "maxLength": 200
+        },
+        "practitioner": {
+          "type": "string",
+          "description": "Attending Thai traditional physician or staff in charge",
+          "maxLength": 150
+        },
+        "targetPatients": {
+          "type": "number",
+          "description": "Target number of patients"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Details, objective, or special remarks",
+          "maxLength": 500
+        },
+        "color": {
+          "type": "string",
+          "description": "Color tag for calendar badge",
+          "maxLength": 30
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "Email or identifier of staff who pinned this event",
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp ISO string",
+          "maxLength": 60
+        }
+      },
+      "required": ["id", "title", "date", "category"]
+    }
+  },
+  "firestore": {
+    "/service_records/{recordId}": {
+      "schema": "ServiceRecord",
+      "description": "Collection of patient visit clinical records for traditional Thai medicine services"
+    },
+    "/financial_records/{transactionId}": {
+      "schema": "FinancialRecord",
+      "description": "Collection of monthly income and expense entries for Khao Saming TTM unit"
+    },
+    "/clinic_events/{eventId}": {
+      "schema": "ClinicEvent",
+      "description": "Collection of pinned special clinic days and department activities"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of authorized hospital staff profiles"
+    }
+  }
+}
